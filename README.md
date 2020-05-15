@@ -25,7 +25,33 @@ Here is Project url of Aws instance where this project is deployed
 ### Product Features:
 
     In this product
-    1. You can see all you days time entry.
+    1. You can see  you days time entry.
     2. you can create New Time Entry and track it.
     3. You can end the entry by using stop button.
     4. You can filter time entry by date filter
+
+### Flow ScreenShots
+
+1. Main Dashboard
+
+![alt text](https://bookmanager.s3.us-east-2.amazonaws.com/dashboard.png)
+
+2. Create Task Entry
+
+![alt text](https://bookmanager.s3.us-east-2.amazonaws.com/create_entry.png)
+
+3. Ended Time Entries
+
+![alt text](https://bookmanager.s3.us-east-2.amazonaws.com/complete_task_entries.png)
+
+4. Login
+
+![alt text](https://bookmanager.s3.us-east-2.amazonaws.com/login.png)
+
+5. Signup
+
+![alt text](https://bookmanager.s3.us-east-2.amazonaws.com/sign.png)
+
+### Project Architecture
+
+![alt text](https://bookmanager.s3.us-east-2.amazonaws.com/struct.png)

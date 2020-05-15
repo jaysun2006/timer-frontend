@@ -117,7 +117,7 @@ export default class AppBase extends React.Component {
                   lg={{ span: 16 }}
                   xl={{ span: 16 }}
                 >
-                  <h2>Task Entries</h2>
+                  <h2>Complete Task Entries</h2>
                 </Col>
                 <Col
                   xs={{ span: 24 }}

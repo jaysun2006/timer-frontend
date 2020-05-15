@@ -34,7 +34,7 @@ class Auth extends React.Component {
                 style={{ width: "30%", padding: 20, textAlign: "center  " }}
               />
               <span style={{ fontSize: "large", fontWeight: "bold" }}>
-                Productivity & Time Tracker
+                Productivity & Tracker
               </span>
               {this.props.register ? (
                 <SignUpFormLayout

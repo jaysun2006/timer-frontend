@@ -1,4 +1,4 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Select } from "antd";
 import React from "react";
 import { ENTRY_CREATE_API, ENTRY_COMPLETE_API } from "../../constants/api";
 import { SUCCESS_MSG_TYPE } from "../../constants/dataKeys";
@@ -9,10 +9,13 @@ import {
   putAPI,
 } from "../../utils/common";
 
+const { Option } = Select;
+
 export default class AddTimeEntryForm extends React.Component {
   state = {
     loading: false,
     initialValues: this.props.initialValues || null,
+    project: null,
   };
 
   handleSubmit = (e) => {
@@ -49,6 +52,10 @@ export default class AddTimeEntryForm extends React.Component {
         console.error(err);
       }
     });
+  };
+
+  onChange = (value) => {
+    this.setState({ project: value });
   };
 
   render() {
@@ -95,7 +102,7 @@ export default class AddTimeEntryForm extends React.Component {
         <Form.Item label={"Project"}>
           {getFieldDecorator("project", {
             initialValue: this.state.initialValues
-              ? this.state.initialValues.description
+              ? this.state.initialValues.project
               : "",
             rules: [
               {
@@ -103,7 +110,22 @@ export default class AddTimeEntryForm extends React.Component {
                 whitespace: true,
               },
             ],
-          })(<Input />)}
+          })(
+            <Select
+              showSearch
+              style={{ width: 200 }}
+              placeholder="Select a Project"
+              optionFilterProp="children"
+              onChange={this.onChange}
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              <Option value="Alphabet">Alphabet</Option>
+              <Option value="Comma AI">Comma AI</Option>
+              <Option value="Tesla">Tesla</Option>
+            </Select>
+          )}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit" loading={this.state.loading}>

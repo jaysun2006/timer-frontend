@@ -16,7 +16,7 @@ export default class AddTimeEntry extends React.Component {
   render() {
     let addTimeEntrySuccessFn = () => {
       this.toggleModal(false);
-      this.props.loadTimeEntryList();
+      this.props.loadActiveEntryList();
     };
     const AddTimeEntryFormLayout = Form.create()(AddTimeEntryForm);
     return (

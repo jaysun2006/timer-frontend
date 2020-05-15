@@ -3,7 +3,6 @@ import moment from "moment";
 import React from "react";
 import { ENTRY_LIST_API } from "../../constants/api";
 import { getAPI } from "../../utils/common";
-import AddTimeEntry from "../timer/AddTimeEntry.js";
 import CurrentRunningEntry from "../timer/CurrentRunningEntry";
 import AppHeader from "./AppHeader";
 
@@ -12,7 +11,6 @@ const { Content } = Layout;
 export default class AppBase extends React.Component {
   state = {
     entryList: [],
-    activeEntry: null,
     loading: true,
     startTime: moment(),
     endTime: moment(),
@@ -27,31 +25,15 @@ export default class AppBase extends React.Component {
       loading: true,
     });
     let successFn = (data) => {
-      let activeEntry = null;
       if (data && data.length) {
-        activeEntry = data.filter((entry) => entry.end_datetime == null);
-        if (activeEntry.length) {
-          var index = data.indexOf(activeEntry[0]);
-          if (index > -1) {
-            data.splice(index, 1);
-          }
-          this.setState({
-            activeEntry: activeEntry[0],
-            entryList: data,
-            loading: false,
-          });
-        } else {
-          this.setState({
-            entryList: data,
-            loading: false,
-            activeEntry: null,
-          });
-        }
+        this.setState({
+          entryList: data,
+          loading: false,
+        });
       } else {
         this.setState({
           entryList: [],
           loading: false,
-          activeEntry: null,
         });
       }
     };
@@ -83,19 +65,19 @@ export default class AppBase extends React.Component {
       title: "Start Time",
       dataIndex: "start_datetime",
       key: "start_datetime",
-      render: (item) => moment(item).format("HH:MM A"),
+      render: (item) => moment(item).format("hh:mm A"),
     },
     {
       title: "End Time",
       dataIndex: "end_datetime",
       key: "end_datetime",
-      render: (item) => moment(item).format("HH:MM A"),
+      render: (item) => moment(item).format("hh:mm A"),
     },
     {
-      title: "Total Time",
-      dataIndex: "end_datetime",
+      title: "Start Date",
+      dataIndex: "start_datetime",
       key: "end_datetime",
-      render: (item) => moment(item).format("HH:MM A"),
+      render: (item) => moment(item).format("dddd, LL"),
     },
   ];
 
@@ -123,22 +105,7 @@ export default class AppBase extends React.Component {
           }}
         >
           <Row>
-            <Col
-              xs={{ span: 24 }}
-              sm={{ span: 24 }}
-              md={{ span: 18, offset: 3 }}
-              lg={{ span: 16, offset: 4 }}
-              xl={{ span: 12, offset: 6 }}
-            >
-              {this.state.activeEntry ? (
-                <CurrentRunningEntry
-                  activeEntry={this.state.activeEntry}
-                  loadTimeEntryList={this.loadTimeEntryList}
-                />
-              ) : (
-                <AddTimeEntry loadTimeEntryList={this.loadTimeEntryList} />
-              )}
-            </Col>
+            <CurrentRunningEntry loadTimeEntryList={this.loadTimeEntryList} />
           </Row>
           <Row>
             <Card>

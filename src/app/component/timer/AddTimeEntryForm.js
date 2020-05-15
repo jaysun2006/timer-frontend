@@ -1,6 +1,6 @@
 import { Button, Form, Input } from "antd";
 import React from "react";
-import { ENTRY_LIST_API, ENTRY_COMPLETE_API } from "../../constants/api";
+import { ENTRY_CREATE_API, ENTRY_COMPLETE_API } from "../../constants/api";
 import { SUCCESS_MSG_TYPE } from "../../constants/dataKeys";
 import {
   displayMessage,
@@ -43,7 +43,7 @@ export default class AddTimeEntryForm extends React.Component {
             errorFn
           );
         } else {
-          postAPI(ENTRY_LIST_API, reqData, successFn, errorFn);
+          postAPI(ENTRY_CREATE_API, reqData, successFn, errorFn);
         }
       } else {
         console.error(err);

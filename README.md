@@ -19,7 +19,7 @@ As a user, I should be able to log my time entries for a task with the following
 Here is Project url of Aws instance where this project is deployed
 
 ```sh
-   http://13.232.218.162
+   http://13.126.162.140/
 ```
 
 ### Product Features:
